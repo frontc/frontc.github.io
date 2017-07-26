@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="读取SQL Server 事务日志"/>
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Lefer">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/07/26/读取SQL Server事务日志/"/>
+
+
+<meta name="description" content="读取 SQL Server 事物日志开始使用下面的脚本开始 123456789101112131415161718192021222324252627CREATE DATABASE [Crack_Me];GOUSE Crack_Me;GOCREATE TABLE [dbo].[Crack_Me_If_You_Can]( [ID] [int] PRIMARY KEY IDENTITY NOT NUL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读取SQL Server 事务日志">
+<meta property="og:url" content="http://yoursite.com/2017/07/26/读取SQL Server事务日志/index.html">
+<meta property="og:site_name" content="Lefer">
+<meta property="og:description" content="读取 SQL Server 事物日志开始使用下面的脚本开始 123456789101112131415161718192021222324252627CREATE DATABASE [Crack_Me];GOUSE Crack_Me;GOCREATE TABLE [dbo].[Crack_Me_If_You_Can]( [ID] [int] PRIMARY KEY IDENTITY NOT NUL">
+<meta property="og:locale" content="zh-hans">
+<meta property="og:image" content="http://www.sqlservercentral.com/Images/7445.jpg">
+<meta property="og:updated_time" content="2017-07-26T15:42:20.143Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读取SQL Server 事务日志">
+<meta name="twitter:description" content="读取 SQL Server 事物日志开始使用下面的脚本开始 123456789101112131415161718192021222324252627CREATE DATABASE [Crack_Me];GOUSE Crack_Me;GOCREATE TABLE [dbo].[Crack_Me_If_You_Can]( [ID] [int] PRIMARY KEY IDENTITY NOT NUL">
+<meta name="twitter:image" content="http://www.sqlservercentral.com/Images/7445.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 读取SQL Server 事务日志 - Lefer </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Lefer</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          读取SQL Server 事务日志
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 26 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="读取-SQL-Server-事物日志"><a href="#读取-SQL-Server-事物日志" class="headerlink" title="读取 SQL Server 事物日志"></a>读取 SQL Server 事物日志</h3><h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>使用下面的脚本开始</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">CREATE DATABASE [Crack_Me];</div><div class="line">GO</div><div class="line"></div><div class="line">USE Crack_Me;</div><div class="line">GO</div><div class="line"></div><div class="line">CREATE TABLE [dbo].[Crack_Me_If_You_Can](</div><div class="line"> [ID] [int] PRIMARY KEY IDENTITY NOT NULL,</div><div class="line"> [Insert_Date] [datetime] NOT NULL,</div><div class="line"> [Some_Data] [varchar](100) NOT NULL,</div><div class="line"> [Optional_Data] [varchar](50)NULL,</div><div class="line"> [Life_the_Universe_and_Everything] [int] NOT NULL,</div><div class="line">);</div><div class="line">GO</div><div class="line"></div><div class="line">INSERT INTO [Crack_Me_If_You_Can]</div><div class="line">(</div><div class="line"> Insert_Date,</div><div class="line"> Some_Data,</div><div class="line"> Optional_Data, </div><div class="line"> Life_the_Universe_and_Everything</div><div class="line">)</div><div class="line">VALUES (GetDate(), &apos;Don&apos;&apos;t Panic&apos;, &apos;Share and Enjoy&apos;, 42);</div><div class="line">GO</div><div class="line"></div><div class="line">SELECT * FROM Crack_Me_If_You_Can;</div><div class="line">GO</div></pre></td></tr></table></figure>
+<p>到此为止，我们得到了一些数据去测试。我们将使用一个未被官方文档收录的函数去查看事物日志。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM fn_dblog(NULL, NULL)</div></pre></td></tr></table></figure>
+<p>然而，粗略一看，你就会发现返回的日志远远多于你刚才执行的insert操作。为了缩小范围，仅仅去关注我们感兴趣的，我们需要找出<em>AllocUnitId</em>。 AllocUnitId可以被认为是Crack_Me_If_You_Can表的一个身份实例。我说<em>实例</em>，是因为<em>AllocUnitId</em>在发生重大的模式变化时会改变。</p>
+<p>下面的查询语句将列出数据库中所有被用户创建的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">SELECT allocunits.allocation_unit_id, objects.name, objects.id</div><div class="line">FROM sys.allocation_units allocunits</div><div class="line">INNER JOIN sys.partitions partitions ON (allocunits.type IN (1, 3) </div><div class="line"> AND partitions.hobt_id = allocunits.container_id)</div><div class="line"> OR (allocunits.type = 2 and partitions.partition_id = allocunits.container_id)</div><div class="line">INNER JOIN sysobjects objects ON partitions.object_id = objects.id</div><div class="line"> AND objects.type IN (&apos;U&apos;, &apos;u&apos;)</div><div class="line">WHERE partitions.index_id IN (0, 1)</div></pre></td></tr></table></figure>
+<p>这样我们得到了Crack_Me_If_You_Can的allocation_unit_id。这样我们可以改进我们的事物日志查询语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM fn_dblog(NULL, NULL)</div><div class="line">WHERE AllocUnitId = 72057594039828480</div></pre></td></tr></table></figure>
+<p>现在我们收缩了返回的数据范围，仅仅五行。我们可以通过限制操作为”<em>LOP_INSERT_ROWS</em>“，进一步去除无效数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM fn_dblog(NULL, NULL)</div><div class="line">WHERE AllocUnitId = 72057594039828480</div><div class="line">AND Operation = &apos;LOP_INSERT_ROWS&apos;</div></pre></td></tr></table></figure>
+<p>下面的语句是上面语句的集合。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">DBCC TRACEON(2537)</div><div class="line"></div><div class="line">SELECT</div><div class="line"> [Current LSN], </div><div class="line"> Operation,</div><div class="line"> dblog.[Transaction ID],</div><div class="line"> AllocUnitId,</div><div class="line"> AllocUnitName,</div><div class="line"> [Page ID],</div><div class="line"> [Slot ID],</div><div class="line"> [Num Elements],</div><div class="line"> dblog1.[Begin Time],</div><div class="line"> dblog1.[Transaction Name],</div><div class="line"> [RowLog Contents 0],</div><div class="line"> [Log Record]</div><div class="line">FROM ::fn_dblog(NULL, NULL) dblog</div><div class="line"> INNER JOIN </div><div class="line"> ( </div><div class="line"> SELECT allocunits.allocation_unit_id, objects.name, objects.id</div><div class="line"> FROM sys.allocation_units allocunits </div><div class="line"> INNER JOIN sys.partitions partitions ON (allocunits.type IN (1, 3) </div><div class="line"> AND partitions.hobt_id = allocunits.container_id) </div><div class="line"> OR (allocunits.type = 2 and partitions.partition_id = allocunits.container_id) </div><div class="line"> INNER JOIN sysobjects objects ON partitions.object_id = objects.id</div><div class="line"> AND objects.type IN (&apos;U&apos;, &apos;u&apos;)</div><div class="line"> WHERE partitions.index_id IN (0, 1)</div><div class="line"> ) allocunits ON dblog.AllocUnitID = allocunits.allocation_unit_id </div><div class="line"> INNER JOIN </div><div class="line"> (</div><div class="line"> SELECT [Begin Time],[Transaction Name],[Transaction ID]</div><div class="line"> FROM fn_dblog(NULL, NULL) x</div><div class="line"> WHERE Operation = &apos;LOP_BEGIN_XACT&apos; </div><div class="line"> ) dblog1 ON dblog1.[Transaction ID] = dblog.[Transaction ID]</div><div class="line">WHERE [Page ID] IS NOT NULL AND [Slot ID] &gt;= 0</div><div class="line"> AND dblog.[Transaction ID] != &apos;0000:00000000&apos; </div><div class="line"> AND Context in (&apos;LCX_HEAP&apos;, &apos;LCX_CLUSTERED&apos;)</div><div class="line"></div><div class="line">DBCC TRACEOFF(2537)</div></pre></td></tr></table></figure>
+<h3 id="探索页"><a href="#探索页" class="headerlink" title="探索页"></a>探索页</h3><p>看一看[Page ID]和[Slot ID]的值，我的是’0001:00000016’ 和 0。使用你的值替换下面语句，并执行这个查询脚本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">DECLARE @pageID$ NVARCHAR(23), @pageID NVARCHAR(50), @sqlCmd NVARCHAR(4000);</div><div class="line">SET @pageID$ = &apos;0001:00000016&apos;</div><div class="line"></div><div class="line">SELECT @pageID = </div><div class="line">CONVERT(VARCHAR(4), CONVERT(INT, CONVERT(VARBINARY,</div><div class="line">SUBSTRING(@pageID$, 0, 5), 2)))</div><div class="line">+ &apos;,&apos; +</div><div class="line">CONVERT(VARCHAR(8), CONVERT(INT, CONVERT(VARBINARY,</div><div class="line">SUBSTRING(@pageID$, 6, 8), 2)))</div><div class="line"></div><div class="line">SET @sqlCmd = &apos;DBCC PAGE (&apos;&apos;Crack_Me&apos;&apos;,&apos; + @pageID + &apos;,3) WITH TABLERESULTS&apos;</div><div class="line">EXECUTE(@sqlCmd)</div></pre></td></tr></table></figure>
+<p>向下滚动，你能看到Slot ID的值。在Field和Value列，你可以看到之前插入的列名和值。看到这里你可能会问，为什么我们不直接采用这种方式获取数据呢？</p>
+<p>两个原因：首先，对于一个集群表的数据不总是在同样的PAGE ID 和 SLOT ID，为了优化和重组空间发生变化。在一个数据库中，什么时候发生重组是不可预期的。不过，如果你的表是是一个HEAP，那么这个方法看起来很好，因为HEAP的PAGE ID 和 SLOT ID 是一直保持不变的。其次是因为为了得到每一条记录我们需要频繁调用DBCC PAGE，对SQLSERVER 是一种负担。</p>
+<h3 id="记录结构"><a href="#记录结构" class="headerlink" title="记录结构"></a>记录结构</h3><p>回到主题：通过<em>fn_dblog</em> 查询的RowLog Contents 0抓取数据。他的内容是：</p>
+<p><code>0x3000140001000000779FFE0082A700002A000000050000020028003700446F6E27742050616E6963536861726520616E6420456E6A6F79</code></p>
+<p>想理解这条记录是如何组织的需要看一下下面的表格。</p>
+<p><img src="http://www.sqlservercentral.com/Images/7445.jpg" alt="img"></p>
+<p>彩色的条目是标准的，对于一个INSERT操作，由固定和可变长度的列构成。</p>
+
+            </div>
+          
+
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2017
+    <span class="footer-author">fangchao.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
